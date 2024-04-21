@@ -44,6 +44,7 @@
             overflow: hidden;
             border: 3px solid;
             border-color: cornflowerblue;
+            float: right;
         }
     </style>
 </head>
@@ -67,7 +68,7 @@
             <p>
                 <input type="text" id="urlInput">
                 altura<input type="text" id="altura">
-                largura<input type="text" id="altura">
+                largura<input type="text" id="largura">
                 <button type="button" onclick="adicionarImagem()">Adicionar Imagem</button>
             </p>
             <p>Cor</p>
@@ -111,14 +112,14 @@
             document.querySelector('form').style.display = 'none';
         }
         function adicionarImagem() {
-            var altura = document.getElementById("altura").value
-            var largura = document.getElementById("largura").value
-            document.img.width = altura
-            document.img.height = largura
+            var altura = document.getElementById('altura').value
+            var largura = document.getElementById('largura').value
             var url = document.getElementById("urlInput").value.trim();
             if (url !== "") {
                 var imagemElement = document.createElement("img");
                 imagemElement.src = url;
+                imagemElement.style.width = altura + 'px';
+                imagemElement.style.height = largura + 'px';
                 document.getElementById("image").appendChild(imagemElement);
                 document.getElementById("urlInput").value = "";
             } else {
