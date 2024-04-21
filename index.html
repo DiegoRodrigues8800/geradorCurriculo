@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Currículo</title>
+    <style>
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding-left: 50px;
+            padding-right: 50px;
+            border-left: 50px solid;
+            border-color: cornflowerblue;
+            height: 100vh;
+            margin: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 50px;
+        }
+
+        p {
+            margin: 0px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        h2 {
+            border-bottom: 2px solid;
+            border-color: cornflowerblue;
+            padding-bottom: 15px;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid;
+            border-color: cornflowerblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="corpo"></div>
+    <div id="image"></div>
+    <div>
+        <form>
+            <p>Conteúdo</p>
+            <input type="text" id="conteudo" name="conteudo">
+            <select name="escolha" id="escolha">
+                <option value="titulo">Título</option>
+                <option value="topico">Tópico</option>
+                <option value="dadol">Dados listados</option>
+                <option value="dado">Dados</option>
+            </select>
+            <button type="button" onclick="mostrarInfo()">Adicionar</button>
+            <br>
+            <p>Url da imagem</p>
+            <p>
+                <input type="text" id="urlInput">
+                altura<input type="text" id="altura">
+                largura<input type="text" id="altura">
+                <button type="button" onclick="adicionarImagem()">Adicionar Imagem</button>
+            </p>
+            <p>Cor</p>
+            <input type="text" id="cor" name="cor">
+            <button type="button" onclick="trocarCor()">Trocar</button>
+            <button type="button" onclick="esconderFormulario()">Concluido</button>
+        </form>
+    </div>
+
+    <script>
+        function mostrarInfo() {
+            var conteudo = document.getElementById("conteudo").value;
+            var escolha = document.getElementById("escolha").value;
+            var novoElemento;
+            if (escolha === "titulo") {
+                novoElemento = document.createElement("h1");
+            } else if (escolha === "topico") {
+                novoElemento = document.createElement("h2");
+            } else if (escolha === "dadol") {
+                novoElemento = document.createElement("ul");
+                novoElemento = document.createElement("li");
+            } else {
+                novoElemento = document.createElement("p")
+            }
+            novoElemento.innerHTML = conteudo;
+            document.getElementById("corpo").appendChild(novoElemento);
+        }
+        function trocarCor() {
+            var cor = document.getElementById("cor").value;
+            var h2 = document.getElementsByTagName('h2');
+            var img = document.getElementsByTagName('img');
+            document.body.style.borderColor = cor;
+            for (var i = 0; i < h2.length; i++) {
+                h2[i].style.borderColor = cor;
+            }
+            for (var i = 0; i < img.length; i++) {
+                img[i].style.borderColor = cor;
+            }
+        }
+        function esconderFormulario() {
+            document.querySelector('form').style.display = 'none';
+        }
+        function adicionarImagem() {
+            var altura = document.getElementById("altura").value
+            var largura = document.getElementById("largura").value
+            document.img.width = altura
+            document.img.height = largura
+            var url = document.getElementById("urlInput").value.trim();
+            if (url !== "") {
+                var imagemElement = document.createElement("img");
+                imagemElement.src = url;
+                document.getElementById("image").appendChild(imagemElement);
+                document.getElementById("urlInput").value = "";
+            } else {
+                alert("Por favor, insira uma URL válida para a imagem.");
+            }
+        }
+    </script>
+</body>
+
+</html>
